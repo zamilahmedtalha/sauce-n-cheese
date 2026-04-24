@@ -118,39 +118,39 @@ export default function Menu() {
                   transition={{ delay: i * 0.05 }}
                   className="h-full"
                 >
-                  <Card className="h-full flex flex-col group p-2 border-2 border-transparent hover:border-pri/40 transition-colors shadow-none hover:shadow-2xl">
-                    <Link to={`/product/${p.slug}`} className="block relative w-full aspect-[4/5] rounded-[1.5rem] overflow-hidden bg-zinc-100/50">
-                      <img src={p.image} alt={p.name} className="w-full h-full object-contain filter drop-shadow-xl transition-transform duration-1000 group-hover:scale-[1.15]" />
+                  <Card className="h-full flex flex-col group p-2">
+                    <Link to={`/product/${p.slug}`} className="block relative w-full aspect-square rounded-lg overflow-hidden bg-zinc-100">
+                      <img src={p.image} alt={p.name} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
                       {p.spicy && (
-                        <div className="absolute top-4 right-4 bg-red-600 text-white p-3 rounded-full shadow-lg border-2 border-white">
-                          <Flame className="w-6 h-6" />
+                        <div className="absolute top-4 right-4 bg-red-500 text-white p-2 rounded-full shadow-lg">
+                          <Flame className="w-5 h-5" />
                         </div>
                       )}
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
-                        <p className="text-white font-bold text-lg leading-relaxed line-clamp-3">{p.description}</p>
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-6">
+                        <p className="text-white font-bold leading-tight line-clamp-3">{p.description}</p>
                       </div>
                     </Link>
                     
-                    <div className="p-4 flex flex-col flex-1 pt-6">
-                      <div className="flex justify-between items-start mb-2 gap-4">
-                        <Link to={`/product/${p.slug}`} className="hover:text-pri transition-colors line-clamp-2">
-                          <h3 className="font-display text-4xl uppercase leading-[0.9]">{p.name}</h3>
+                    <div className="p-4 flex flex-col flex-1">
+                      <div className="flex justify-between items-start mb-2 gap-2">
+                        <Link to={`/product/${p.slug}`} className="hover:text-pri transition-colors">
+                          <h3 className="font-display text-3xl uppercase leading-none">{p.name}</h3>
                         </Link>
-                        <span className="font-display text-2xl text-pri whitespace-nowrap bg-pri/10 px-3 py-1 rounded-lg">PKR {p.basePrice}</span>
+                        <span className="font-bold text-xl text-pri whitespace-nowrap">PKR {p.basePrice}</span>
                       </div>
                       
-                      <div className="flex gap-2 mb-8 text-xs font-bold uppercase tracking-widest text-sec mt-2">
-                        <span className="bg-zinc-100 px-3 py-1 pb-0.5 rounded-md">{p.nutrition.cal} CAL</span>
+                      <div className="flex gap-2 mb-6 text-xs font-bold uppercase text-sec">
+                        <span className="bg-zinc-100 px-2 py-1 rounded-sm">{p.nutrition.cal} CAL</span>
                         {p.allergens.length > 0 && (
-                          <span className="bg-red-50 text-red-600 px-3 py-1 pb-0.5 rounded-md flex items-center gap-1">
-                            <AlertTriangle className="w-3 h-3" /> ALLERGENS
+                          <span className="bg-red-50 text-red-500 px-2 py-1 rounded-sm flex items-center gap-1">
+                            <AlertTriangle className="w-3 h-3" /> Allergens
                           </span>
                         )}
                       </div>
 
                       <div className="mt-auto">
                         <Button 
-                          className="w-full relative overflow-hidden group shadow-[0_8px_0_0_rgb(200,80,0)] h-16 text-xl rounded-xl active:translate-y-[8px] active:shadow-none" 
+                          className="w-full relative overflow-hidden group shadow-[0_8px_0_0_rgb(200,80,0)] h-16 text-xl" 
                           onClick={() => {
                             const sizeData = p.sizes.find(s => s.name === 'M') || p.sizes[0];
                             useStore.getState().addToCart({

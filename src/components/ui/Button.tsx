@@ -1,5 +1,6 @@
 import React from 'react';
 import { motion, HTMLMotionProps } from 'motion/react';
+import { Slot } from '@radix-ui/react-slot';
 import { cn } from '../../lib/utils';
 import { cva, type VariantProps } from 'class-variance-authority';
 
@@ -31,19 +32,20 @@ const buttonVariants = cva(
 );
 
 export interface ButtonProps
-  extends HTMLMotionProps<"button">,
+  extends React.ButtonHTMLAttributes<HTMLButtonElement>,
     VariantProps<typeof buttonVariants> {
   asChild?: boolean;
 }
 
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
   ({ className, variant, size, asChild = false, ...props }, ref) => {
+    const Comp = asChild ? motion(Slot as any) : motion.button;
     return (
-      <motion.button
+      <Comp
         className={cn(buttonVariants({ variant, size, className }))}
-        ref={ref}
+        ref={ref as any}
         whileTap={{ scale: 0.95 }}
-        {...props}
+        {...(props as any)}
       />
     );
   }

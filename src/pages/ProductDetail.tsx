@@ -25,18 +25,17 @@ export default function ProductDetail() {
              <motion.div 
                initial={{ scale: 0.9, opacity: 0 }}
                animate={{ scale: 1, opacity: 1 }}
-               className="w-full aspect-[4/5] md:aspect-square rounded-[2rem] overflow-hidden shadow-2xl relative bg-zinc-100 border-4 border-white group"
+               className="w-full aspect-square rounded-3xl overflow-hidden shadow-2xl relative bg-zinc-100"
              >
-               <img src={product.image} alt={product.name} className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110" />
-               <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+               <img src={product.image} alt={product.name} className="w-full h-full object-cover" />
              </motion.div>
              {/* Physics floating elements would go here, simulated by motion */}
              {product.spicy && (
                <motion.div 
-                 initial={{ y: 50, opacity: 0, rotate: -15 }}
-                 animate={{ y: 0, opacity: 1, rotate: 0 }}
-                 transition={{ delay: 0.2, type: "spring" }}
-                 className="absolute -bottom-6 flex items-center justify-center p-6 bg-red-600 rounded-full text-white shadow-xl -right-6 border-4 border-white"
+                 initial={{ y: 50, opacity: 0 }}
+                 animate={{ y: 0, opacity: 1 }}
+                 transition={{ delay: 0.2 }}
+                 className="absolute -bottom-6 flex items-center justify-center p-6 bg-red-500 rounded-full text-white shadow-xl -right-6"
                >
                  <Flame className="w-12 h-12" />
                </motion.div>
@@ -49,12 +48,12 @@ export default function ProductDetail() {
               <motion.h1 
                 initial={{ x: -20, opacity: 0 }}
                 animate={{ x: 0, opacity: 1 }}
-                className="font-display text-7xl md:text-[7rem] leading-[0.8] uppercase tracking-tighter"
+                className="font-display text-6xl md:text-8xl leading-none uppercase tracking-tighter"
               >
                 {product.name}
               </motion.h1>
-              <p className="text-4xl font-display text-pri mt-6 mb-2 tracking-wide">PKR {product.basePrice} <span className="text-sm font-sans text-sec font-bold uppercase tracking-widest">(Base)</span></p>
-              <p className="text-2xl text-fg font-medium leading-relaxed mt-4">{product.description}</p>
+              <p className="text-3xl font-bold text-pri mt-4 mb-2">PKR {product.basePrice} <span className="text-sm text-sec uppercase tracking-widest">(Base)</span></p>
+              <p className="text-xl text-fg font-bold leading-relaxed">{product.description}</p>
             </div>
 
             {/* Allergens Warning Mega Block */}

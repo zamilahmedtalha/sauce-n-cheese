@@ -25,13 +25,13 @@ export function Navbar() {
         <motion.nav 
           initial={{ y: -100 }}
           animate={{ y: 0 }}
-          className="glass-panel rounded-full px-8 py-4 flex items-center justify-between shadow-[0_10px_30px_rgba(0,0,0,0.15)] border border-white/20"
+          className="glass-panel rounded-full px-8 py-4 flex items-center justify-between"
         >
           <Link to="/" className="text-4xl font-display font-medium tracking-tighter text-pri flex items-center gap-3 hover:scale-105 transition-transform duration-300">
             <img 
               src="/logo.png" 
               alt="Sauce N Cheese Logo" 
-              className="h-14 w-auto object-contain bg-white rounded-xl shadow-sm px-2"
+              className="h-12 w-auto object-contain bg-white rounded-md px-2"
               onError={(e) => {
                 e.currentTarget.style.display = 'none';
                 e.currentTarget.nextElementSibling?.classList.remove('hidden');

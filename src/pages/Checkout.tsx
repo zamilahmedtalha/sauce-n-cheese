@@ -1,5 +1,5 @@
 import { useState, FormEvent } from 'react';
-import { useStore, calculateItemTotal, calculateItemUnitTotal } from '../lib/store';
+import { useStore } from '../lib/store';
 import { Button } from '../components/ui/Button';
 import { Minus, Plus, Settings, Check, CreditCard, ArrowRight, ArrowLeft } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
@@ -13,7 +13,7 @@ export default function Checkout() {
   const [step, setStep] = useState(1); // 1 = Customize, 2 = Details
   const [editingItemId, setEditingItemId] = useState<string | null>(null);
 
-  const subtotal = cart.reduce((acc, item) => acc + calculateItemTotal(item), 0);
+  const subtotal = cart.reduce((acc, item) => acc + (item.price * item.quantity), 0);
   const total = subtotal + subtotal * 0.16;
 
   if (cart.length === 0 && step === 1) {
@@ -78,10 +78,7 @@ export default function Checkout() {
                       <Settings className="w-4 h-4 mr-2" />
                       {editingItemId === item.id ? 'DONE' : 'CUSTOMIZE'}
                     </Button>
-                    <div className="flex items-center gap-3">
-                      <span className="text-sec font-bold">x{item.quantity}</span>
-                      <span className="font-display text-2xl w-28 text-right">PKR {calculateItemTotal(item)}</span>
-                    </div>
+                    <span className="font-display text-2xl w-24 text-right">PKR {item.price}</span>
                   </div>
 
                   {/* Customizer Panel */}

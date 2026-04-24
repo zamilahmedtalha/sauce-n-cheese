@@ -1,6 +1,7 @@
 import { motion, useScroll, useTransform } from 'motion/react';
 import { Button } from '../components/ui/Button';
 import { SplitText } from '../components/ui/SplitText';
+import { ShinyText } from '../components/ui/ShinyText';
 import { useRef } from 'react';
 import { Link } from 'react-router-dom';
 
@@ -44,14 +45,7 @@ export default function Home() {
             <h1 className="font-display text-[20vw] md:text-[min(16vw,25rem)] leading-[0.75] tracking-tighter text-pri drop-shadow-[0_40px_80px_rgba(0,0,0,0.8)] -mt-4 md:-mt-12 z-20">
               <SplitText text="N CHEESE" delay={0.05} />
             </h1>
-            <motion.p
-              initial={{ y: 20, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              transition={{ delay: 0.5 }}
-              className="text-white font-bold tracking-[0.3em] text-2xl md:text-5xl uppercase mt-12 bg-black/60 px-12 py-6 backdrop-blur-md rounded-sm border-2 border-white/20"
-            >
-              GLOBAL HALAL DOMINANCE
-            </motion.p>
+              <ShinyText text="TAKE IT EASY LET'S GET CHEESY" speed={3} className="text-white font-bold tracking-[0.2em] md:tracking-[0.3em] text-xl md:text-3xl lg:text-4xl uppercase mt-12 bg-black/60 px-8 lg:px-12 py-6 backdrop-blur-md rounded-sm border-2 border-pri text-center" />
           </motion.div>
 
           {/* Button Cluster */}
@@ -59,16 +53,12 @@ export default function Home() {
             style={{ y: y2 }}
             className="relative z-30 mt-32 flex flex-col w-full sm:flex-row flex-wrap justify-center gap-8 max-w-4xl"
           >
-            <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-              <Button size="lg" className="w-full sm:w-auto text-3xl px-16 py-10 shadow-[0_20px_0_0_rgba(200,80,0,1)] active:translate-y-[20px] active:shadow-none bg-pri text-white border-4 border-pri hover:bg-pri font-black" asChild>
-                <Link to="/menu">START ORDERING</Link>
-              </Button>
-            </motion.div>
-            <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-              <Button size="lg" variant="glass" className="w-full sm:w-auto text-3xl px-16 py-10 font-black border-4" asChild>
-                <Link to="/menu">EXPLORE MENU</Link>
-              </Button>
-            </motion.div>
+            <Button size="lg" className="w-full sm:w-auto text-3xl px-16 py-10 shadow-[0_20px_0_0_rgba(200,80,0,1)] active:translate-y-[20px] active:shadow-none bg-pri text-white border-4 border-pri hover:bg-pri font-black" asChild>
+              <Link to="/menu">START ORDERING</Link>
+            </Button>
+            <Button size="lg" variant="glass" className="w-full sm:w-auto text-3xl px-16 py-10 font-black border-4" asChild>
+              <Link to="/menu">EXPLORE MENU</Link>
+            </Button>
           </motion.div>
         </div>
       </section>

@@ -1,4 +1,4 @@
-import { useStore, calculateItemTotal, calculateItemUnitTotal } from '../lib/store';
+import { useStore } from '../lib/store';
 import { Button } from '../components/ui/Button';
 import { Card } from '../components/ui/Card';
 import { Minus, Plus, Trash2, ArrowRight } from 'lucide-react';
@@ -8,7 +8,7 @@ import { motion, AnimatePresence } from 'motion/react';
 export default function Cart() {
   const { cart, removeFromCart, addToCart, clearCart } = useStore();
 
-  const subtotal = cart.reduce((acc, item) => acc + calculateItemTotal(item), 0);
+  const subtotal = cart.reduce((acc, item) => acc + (item.price * item.quantity), 0);
   const tax = subtotal * 0.16; // 16% GST
   const total = subtotal + tax;
 
@@ -51,14 +51,14 @@ export default function Cart() {
                      <div className="flex-1">
                        <div className="flex justify-between items-start mb-2">
                          <h3 className="font-display text-3xl uppercase">{item.name}</h3>
-                         <span className="font-display text-2xl text-pri">PKR {calculateItemTotal(item)}</span>
+                         <span className="font-display text-2xl text-pri">PKR {item.price * item.quantity}</span>
                        </div>
                        
                        <p className="text-sec font-bold uppercase text-xs tracking-widest mb-4 border-l-2 border-pri pl-2">
                          SIZE: {item.size} 
-                         {item.extras.cheese ? ` | +${item.extras.cheese} CHEESE` : ''}
-                         {item.extras.beef ? ` | +${item.extras.beef} BEEF` : ''}
-                         {item.extras.bacon ? ` | +${item.extras.bacon} BACON` : ''}
+                         {item.extras.cheese > 0 && ` | +${item.extras.cheese} CHEESE`}
+                         {item.extras.beef > 0 && ` | +${item.extras.beef} BEEF`}
+                         {item.extras.bacon > 0 && ` | +${item.extras.bacon} BACON`}
                        </p>
                        
                        <div className="flex items-center gap-6 mt-4">

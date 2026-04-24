@@ -7,7 +7,7 @@ export interface CartItem {
   id: string;
   productId: string;
   name: string;
-  price: number; // Base price + size price
+  price: number;
   size: ProductSize;
   quantity: number;
   extras: {
@@ -17,18 +17,6 @@ export interface CartItem {
     bacon?: number;
   };
 }
-
-export const calculateItemUnitTotal = (item: CartItem) => {
-  const extrasPrice = 
-    (item.extras?.cheese || 0) * 75 + 
-    (item.extras?.beef || 0) * 150 + 
-    (item.extras?.bacon || 0) * 100;
-  return item.price + extrasPrice;
-};
-
-export const calculateItemTotal = (item: CartItem) => {
-  return calculateItemUnitTotal(item) * item.quantity;
-};
 
 interface AppState {
   cart: CartItem[];
